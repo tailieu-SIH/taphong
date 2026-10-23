@@ -400,29 +400,29 @@ td, th { overflow-wrap: break-word; }
   <div class="stripe" aria-hidden="true"><i style="background:#E0422B"></i><i style="background:#0E8AA8"></i><i style="background:#7C4DCC"></i><i style="background:#D6336C"></i><i style="background:#E08A00"></i><i style="background:#2563EB"></i><i style="background:#5B9A1F"></i><i style="background:#0F9D7A"></i><i style="background:#475569"></i><i style="background:#C2410C"></i></div>
 </header>
 <div id="banner"></div>
-<!-- BẮT ĐẦU CHÈN FORM THÔNG TIN SIH -->
-<div id="sih-auth-container" style="position: fixed; inset: 0; background: rgba(20, 20, 30, 0.85); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 16px;">
-  <div style="background: white; padding: 30px; max-width: 450px; width: 100%; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); text-align: left; border-top: 5px solid #EF402A;">
-    <h2 style="margin-top: 0; font-family: 'Iowan Old Style', Georgia, serif; font-size: 1.4rem; color: #1D1C22;">Thông Tin Học Viên</h2>
-    <p style="font-size: 0.9rem; color: #55525C; margin-bottom: 20px;">Vui lòng nhập thông tin chính xác trước khi bắt đầu bài học và sát hạch tác phong.</p>
+<!-- BẮT ĐẦU CHÈN FORM THÔNG TIN SIH CẢI TIẾN -->
+<div id="sih-auth-container" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(20, 20, 30, 0.9); z-index: 999999 !important; display: flex; align-items: center; justify-content: center; padding: 16px; box-sizing: border-box;">
+  <div style="background: white; padding: 30px; max-width: 450px; width: 100%; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); text-align: left; border-top: 5px solid #EF402A; box-sizing: border-box; color: #1D1C22;">
+    <h2 style="margin-top: 0; font-family: sans-serif; font-size: 1.4rem; color: #1D1C22; font-weight: bold;">Thông Tin Học Viên</h2>
+    <p style="font-size: 0.9rem; color: #55525C; margin-bottom: 20px; line-height: 1.4;">Vui lòng nhập thông tin chính xác trước khi bắt đầu ôn tập và làm bài kiểm tra tác phong SIH.</p>
     <form id="sihInfoForm" onsubmit="submitSihAuth(event)">
       <div style="margin-bottom: 15px;">
         <label style="display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem;">Họ và tên *</label>
-        <input type="text" id="sih_fullname" required placeholder="Nguyễn Văn A" style="width: 100%; padding: 10px; border: 1.5px solid #E4E2E8; border-radius: 8px; font-size: 16px;">
+        <input type="text" id="sih_fullname" required placeholder="Nguyễn Văn A" style="width: 100%; padding: 10px; border: 1.5px solid #E4E2E8; border-radius: 8px; font-size: 16px; box-sizing: border-box;">
       </div>
       <div style="margin-bottom: 15px;">
         <label style="display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem;">Số điện thoại *</label>
-        <input type="tel" id="sih_phone" required placeholder="0901234567" pattern="[0-9]{10}" style="width: 100%; padding: 10px; border: 1.5px solid #E4E2E8; border-radius: 8px; font-size: 16px;">
+        <input type="tel" id="sih_phone" required placeholder="0901234567" pattern="[0-9]{10}" style="width: 100%; padding: 10px; border: 1.5px solid #E4E2E8; border-radius: 8px; font-size: 16px; box-sizing: border-box;">
       </div>
       <div style="margin-bottom: 20px;">
         <label style="display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem;">Email công việc *</label>
-        <input type="email" id="sih_email" required placeholder="nhanvien@sihospital.com.vn" style="width: 100%; padding: 10px; border: 1.5px solid #E4E2E8; border-radius: 8px; font-size: 16px;">
+        <input type="email" id="sih_email" required placeholder="nhanvien@sihospital.com.vn" style="width: 100%; padding: 10px; border: 1.5px solid #E4E2E8; border-radius: 8px; font-size: 16px; box-sizing: border-box;">
       </div>
-      <button type="submit" style="width: 100%; background: #EF402A; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 0 rgba(0,0,0,0.12);">Bắt đầu học và làm bài</button>
+      <button type="submit" style="width: 100%; background: #EF402A; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 0 rgba(0,0,0,0.12);">Bắt đầu làm bài</button>
     </form>
   </div>
 </div>
-<!-- KẾT THÚC CHÈN FORM THÔNG TIN SIH -->
+<!-- KẾT THÚC CHÈN FORM THÔNG TIN SIH CẢI TIẾN -->
 <div class="layout">
   <nav class="side" id="nav" aria-label="Mục lục khóa học"></nav>
   <div class="scrim" id="scrim"></div>
