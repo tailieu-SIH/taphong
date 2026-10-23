@@ -418,7 +418,7 @@ td, th { overflow-wrap: break-word; }
         <label style="display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem;">Email công việc *</label>
         <input type="email" id="sih_email" required placeholder="nhanvien@sihospital.com.vn" style="width: 100%; padding: 10px; border: 1.5px solid #E4E2E8; border-radius: 8px; font-size: 16px; box-sizing: border-box;">
       </div>
-     <button type="submit" onclick="document.getElementById('sih-auth-container').style.display='none';" style="width: 100%; background: #EF402A; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 0 rgba(0,0,0,0.12);">Bắt đầu làm bài</button>
+    <button type="submit" style="width: 100%; background: #EF402A; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 0 rgba(0,0,0,0.12);">Bắt đầu làm bài</button>
     </form>
   </div>
 </div>
@@ -2459,14 +2459,19 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
   let sihStudentData = { name: '', phone: '', email: '' };
 
   // 2. HÀM XỬ LÝ KHI BẤM NỘP FORM THÔNG TIN BAN ĐẦU
-  window.submitSihAuth = function(event) {
+    window.submitSihAuth = function(event) {
     event.preventDefault();
     sihStudentData.name = document.getElementById('sih_fullname').value;
     sihStudentData.phone = document.getElementById('sih_phone').value;
     sihStudentData.email = document.getElementById('sih_email').value;
     
-    // Ẩn form để học viên vào học/làm bài bình thường
+    // 1. Ẩn form thông tin đi
     document.getElementById('sih-auth-container').style.display = 'none';
+    
+    // 2. Kích hoạt lại app gốc của bạn hiển thị nội dung bài học
+    if (typeof boot === 'function') {
+        boot();
+    }
   };
   // 3. HÀM SUBMIT EXAM ĐÃ ĐƯỢC TÍCH HỢP GỬI GOOGLE SHEETS
   function submitExam() {
