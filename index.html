@@ -400,6 +400,29 @@ td, th { overflow-wrap: break-word; }
   <div class="stripe" aria-hidden="true"><i style="background:#E0422B"></i><i style="background:#0E8AA8"></i><i style="background:#7C4DCC"></i><i style="background:#D6336C"></i><i style="background:#E08A00"></i><i style="background:#2563EB"></i><i style="background:#5B9A1F"></i><i style="background:#0F9D7A"></i><i style="background:#475569"></i><i style="background:#C2410C"></i></div>
 </header>
 <div id="banner"></div>
+<!-- BẮT ĐẦU CHÈN FORM THÔNG TIN SIH -->
+<div id="sih-auth-container" style="position: fixed; inset: 0; background: rgba(20, 20, 30, 0.85); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 16px;">
+  <div style="background: white; padding: 30px; max-width: 450px; width: 100%; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); text-align: left; border-top: 5px solid #EF402A;">
+    <h2 style="margin-top: 0; font-family: 'Iowan Old Style', Georgia, serif; font-size: 1.4rem; color: #1D1C22;">Thông Tin Học Viên</h2>
+    <p style="font-size: 0.9rem; color: #55525C; margin-bottom: 20px;">Vui lòng nhập thông tin chính xác trước khi bắt đầu bài học và sát hạch tác phong.</p>
+    <form id="sihInfoForm" onsubmit="submitSihAuth(event)">
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem;">Họ và tên *</label>
+        <input type="text" id="sih_fullname" required placeholder="Nguyễn Văn A" style="width: 100%; padding: 10px; border: 1.5px solid #E4E2E8; border-radius: 8px; font-size: 16px;">
+      </div>
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem;">Số điện thoại *</label>
+        <input type="tel" id="sih_phone" required placeholder="0901234567" pattern="[0-9]{10}" style="width: 100%; padding: 10px; border: 1.5px solid #E4E2E8; border-radius: 8px; font-size: 16px;">
+      </div>
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem;">Email công việc *</label>
+        <input type="email" id="sih_email" required placeholder="nhanvien@sihospital.com.vn" style="width: 100%; padding: 10px; border: 1.5px solid #E4E2E8; border-radius: 8px; font-size: 16px;">
+      </div>
+      <button type="submit" style="width: 100%; background: #EF402A; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 0 rgba(0,0,0,0.12);">Bắt đầu học và làm bài</button>
+    </form>
+  </div>
+</div>
+<!-- KẾT THÚC CHÈN FORM THÔNG TIN SIH -->
 <div class="layout">
   <nav class="side" id="nav" aria-label="Mục lục khóa học"></nav>
   <div class="scrim" id="scrim"></div>
@@ -2432,6 +2455,22 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
     });
     return { id: ip.id, ts: Date.now(), lines: lines, total: total, correct: correct, wrong: wrong, unanswered: unanswered, score: total ? Math.round(correct / total * 1000) / 10 : 0, byGroup: byGroup };
   }
+// 1. BIẾN TOÀN CỤC LƯU THÔNG TIN HỌC VIÊN
+  let sihStudentData = { name: '', phone: '', email: '' };
+
+  // 2. HÀM XỬ LÝ KHI BẤM NỘP FORM THÔNG TIN BAN ĐẦU
+  window.submitSihAuth = function(event) {
+    event.preventDefault();
+    sihStudentData.name = document.getElementById('sih_fullname').value;
+    sihStudentData.phone = document.getElementById('sih_phone').value;
+    sihStudentData.email = document.getElementById('sih_email').value;
+    
+    // Ẩn form để học viên vào học/làm bài bình thường
+    document.getElementById('sih-auth-container').style.display = 'none';
+    announce("Chào " + sihStudentData.name + ", bắt đầu ca học tác phong SIH.");
+  };
+
+  // 3. HÀM SUBMIT EXAM ĐÃ ĐƯỢC TÍCH HỢP GỬI GOOGLE SHEETS
   function submitExam() {
     const ip = D().inprogress; if (!ip) return null;
     const att = grade(ip);
@@ -2444,7 +2483,36 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
       }
     });
     D().inprogress = null; Store.save();
+
+    // === ĐOẠN MÃ LƯU VẾT ĐIỂM SỐ GỬI ĐI ===
+    const finalScoreText = att.correct + "/" + att.total + " (" + (Math.round(att.score * 10) / 10) + " điểm)";
+    sendDataToGoogleSheets(sihStudentData.name, sihStudentData.phone, sihStudentData.email, finalScoreText);
+    // ======================================
+
     return att;
+  }
+
+ // 4. HÀM BẮN DỮ LIỆU NGẦM VỀ GOOGLE SHEETS
+  function sendDataToGoogleSheets(name, phone, email, score) {
+    // Đã cấu hình chính xác link gốc FormResponse của bạn
+    const formURL = "https://google.com"; 
+
+    const formData = new URLSearchParams();
+    // Đã cấu hình chính xác 4 mã số entry tương ứng với các câu hỏi của bạn
+    formData.append('entry.1384078869', name);  // Mã định danh ô Họ tên
+    formData.append('entry.1221800162', phone); // Mã định danh ô Số điện thoại
+    formData.append('entry.1804928096', email); // Mã định danh ô Email
+    formData.append('entry.1340156942', score); // Mã định danh ô Điểm số
+
+    fetch(formURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData
+    })
+    .then(() => console.log("Hệ thống SIH: Đã lưu vết thành công!"))
+    .catch((error) => console.error("Lỗi đồng bộ dữ liệu:", error));
+  }
   }
   function groupTable(att) {
     return `<div class="tbl-wrap" tabindex="0" role="region" aria-label="Kết quả theo chủ đề"><table class="gt"><thead><tr><th scope="col">Chủ đề</th><th scope="col">Đúng</th><th scope="col">Sai</th><th scope="col">Bỏ trống</th><th scope="col">Chính xác</th><th scope="col">Đánh giá</th></tr></thead><tbody>${GROUPS.filter(g => att.byGroup[g.id]).map(g => {
