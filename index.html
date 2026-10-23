@@ -2467,9 +2467,7 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
     
     // Ẩn form để học viên vào học/làm bài bình thường
     document.getElementById('sih-auth-container').style.display = 'none';
-    announce("Chào " + sihStudentData.name + ", bắt đầu ca học tác phong SIH.");
   };
-
   // 3. HÀM SUBMIT EXAM ĐÃ ĐƯỢC TÍCH HỢP GỬI GOOGLE SHEETS
   function submitExam() {
     const ip = D().inprogress; if (!ip) return null;
