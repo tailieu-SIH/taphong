@@ -379,6 +379,20 @@ td, th { overflow-wrap: break-word; }
 .srch .filters select { width: 100%; }
 @media (max-width: 640px) { .srch .filters { grid-template-columns: 1fr; gap: 4px; } .srch .filters select { margin-bottom: 8px; } }
 
+/* Form thông tin người làm bài */
+.pf { display: grid; gap: 12px; }
+.pf-f label { display: block; font-weight: 600; font-size: .92rem; margin-bottom: 4px; }
+.pf-f input[type=text], .pf-f input[type=tel], .pf-f input[type=email] { width: 100%; font: inherit; padding: 11px 14px; border: 2px solid var(--line); border-radius: 10px; min-height: 48px; background: #fff; }
+.pf-f input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-soft); }
+.pf-f input[aria-invalid=true] { border-color: var(--bad); background: var(--bad-soft); }
+.pf-c .chk { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; font-size: .92rem; line-height: 1.5; }
+.pf-c input { margin-top: 3px; flex: none; }
+.req { color: var(--bad); font-weight: 700; }
+.err { color: var(--bad); font-size: .86rem; font-weight: 600; margin: 4px 0 0; min-height: 0; }
+.err:empty { display: none; }
+.who { background: #fff; border: 1px solid var(--line); border-left: 5px solid var(--slate); border-radius: var(--radius); padding: 8px 14px; font-size: .94rem; }
+.frac { font-size: 1.15rem; }
+
 </style>
 </head>
 <body>
@@ -407,7 +421,7 @@ td, th { overflow-wrap: break-word; }
     <main id="main"></main>
     <footer class="foot">
       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANEAAAEsCAMAAABqn6auAAAASFBMVEX///////7//v///v7//v3//f3//Pz/+ff96eX6w7r0fGvyZlLxVkLvRi/vQy3vQizvQSvvQCvvQCrvQCjvPifuOiPuNyDuMhuvzBb3AAAWgElEQVR42u1dB5erKhA2F1FBBVYp//+f3pnBgmmbRE3ZE947524sIx9lmMaQZVAO2be8eTn8kT46DIONZbKp/0ZpZAFw4P86uL9RQlMOiJzSf6EoOyHyuvsLxbgvoi+iL6Ivoi+iL6Ivoo9GZLSiYv4IIqWtD1i8M7uCehIi/eN9I6UQQsrGhV59OiLlrRTloJKVQmqvzScjMibUAqDwAguHvyrpe/25iIx1gIdzNvQR40WWid7qT0VkeisAz8IWAJiE2gnSExB5kRUn9g2AZDvzkYhUkGcAEaSgPhGRdnU5zaAjSNKr1yIyd5UR0dkxR3Mpq+zPGtJrERll7ypRLtC+ztkFUyGHToqfVP1dpK+vZbciMn1omztKG3pDs+hSF8GwY4I+abo7SXtr1iMythdVeUephKbv9lXGLyBiWdXSM1beSbq9BulWRF7ca38WzkzUz5d/9E39AGm7uo9gOmQFZ3eUHFmZxvcuAkJuF5Rx95Jm17nkbYhgUWHFfe1YMKguLkb8OqJL69VV0teWspsR3f3ZbD9E2esQaf/3ENVXHqEF6XWIHppHxrbVNdbQgIb+mnlEvC6/myERa77YFCAG9ViBR3jdakTw2EPr0dXhOgyeR9ajfguZwdwrMyhc2GHYlez8sGO8bBA0aISvkBnul+sG4etyJ03z+zVyHcne97h3RwHZ9Oq8ZJezqhlr9hjpF+lHyFRKlp+OuYUo8xL9aJVaftJLnF/lV29u3QJIJawhyw46yPCx1i2EVFdo0SJtlpG5rqrDG1ggzQPhEqORuJPVoBJlZFJtxzn0AM3N7Aza+ftLF2lqYNASFjS0eldCtsFGQNo8QNSZbewM1j8SCWXGvlA2eIUUYDkJg1mlU84+Esnkrlpjb5YZ2sm3cE9kmGjCuDAp3WOHQHXUeCU0Ir+faCkap7sXyHVx2pTSW5XOxNmS1weYXP8eIVup3qyWveWS/95aYB0S7VmjAHALkd2rR8SO30L2fkA/mpce4NRGn/AZ5OicPUTzRXaGRCLNpXPLGijrcdV9mOJrEWFPAINIvcnKtyK7YoB4d0Q48CsZEhUAR1zBss9FFBmEnviTlYdV1DaxM9xvDFgWdFMOLI9ap1hHS16p643r0QPGgBPjwOhaCetJuQ208s6BXLaq1MNCD19cSUnaLewMnQm2XVPs1K7GraQUuk3sDJ0ydk3pdKLer6L0ozbT+MyashOll0ajPal8Ef0hREa9T9GbaOUuxBDG1xcf3Bbef9fI9yn1epkBo3veaGNbsV6uQ+my5O9Syg20CXqKv0kP5ayot5C963eBBICkX2/dQtv1e0DiMIuuejVuXo/IHP96SHlW/uKmuUP2fgdI/FdA90hBypPB44Vbm1nxO6C75Drlm4o8QPdbBthJ3R6wWmTkd1JbSqpoZ6uKB4fL5V83W8kq0fwerHuf7K1tUA/4R6RYzkCOeyceoNOGG6Le79QmjOofcYyFRiSQWFY14QEqzt6yzedu/egR36VuXRKvyljV+lZt7698qsYHfDLncxBaaD9fhzV27KQphPjDEc2x+fy6SfRjEM2h7F9EL0V0xTp4KyJj3gaRUfqnt73R5y01NyCCN01n+x+t9Bsg0toFb1WLm1690Q8gIgrOtMqirUe/GJFRuNs1+lBAvHFn9ob+gugGCs9EpPtQJxEpuZD+RP66jkh3QGEWgbmok7iO5yNSzghYPIuC53nOC6yYaI/c/dcRaWvFgSgACc4jhUe3xK1HRFoT44dFgGN1LPZfQ6RdK4DCMkSyqh+EtBqRdgCoOPHPV0fRSFcQUeD+KYXywQqtRWRwF9i57a5Vv4hGuobInd8w+6D4txbRpY16x1EUlxFd2TD7WBuvQ4Svn41XGiPuf0WEY+581D4/PFylFYiSLmLjxv5kt84NiJabrig9AFvVSesQ0aTOB9Pg0DdTCy/qcwXRvPtlfHlUpJbd/BRE8x4whsYQKTAI8HCyJfkaIlSc+NgpWYVExkZ6LMp9HaKpnrgCof/NYRQ0DRvOxU3zSAdBSyqDtyppkQisTvnIXfTT+yg2MGNlE1rMM+MNykM4p+6YR3ECHkQbfoBG69vqwGggV/2T55HpdRwh2JrRGKL60AiKVk/Cz65y7yGot5pluXbg5zCSH1iS1iEat+nNm95BinahRWdpb29bYY21+HjrJ3lbu5rFrJvFA6xhHaJ5k3U9Cz0aVZzgl+FI12SGH3zcznqesSPZw4pKrUaUvo3Zm/Q9srdSerHovg7RmVG3geVE+5o4wytGHW5py08FhJWI1MwZmidzBuJTfFhOzYZ9FKkC9366pJqssL900h2IlK85eRIfE+zWIhqkIOgk05ttEJlRLipeIAXNXImjPmS2QJQI48XzJdWkojEhxnpEBIgNgeqPmJNXIsIt9Hx2C3V6JSKtgzwMKuSDG0zXauWzMnCAqlqnViFSDtQTxiZ15BWWkzQLFcc9LBcMvLcggg5Cfy1bl8VqtXUrNXxgAIXzZw3xvyNCQ7GsEloPZhpbb4FMjVO4h6X27gym3xChyF4nm5JgzKnHfJvrEenUgMgIU3D6Trs34GlEMW+D42hjeLSF19u9fWpV5WhxqL0/SjF6DZHSGPBQJqEoHC2qL7N7jyFQaYgMFzWmGL3JXqc678m1URxSE3F4oW9i7KVDsssNxp5s08F3ARFoh6GT5JhgqYH4cUAb+fhoq2HqXcAJUcnG+27ccJ14/6txJ5IyMNxoD32CJ8dFYEX2wY28lso6yRe7DTE7ZylkF4DzGaPmxEFoN/KtMdg9lobbIpEnZia9vFA/D1GnDSVhSE3yeZENHWWtDyJhzMLRpVaiFajIl2Fq1TVh6omIYhKGcunYYjj4oKOatk5jt3Jg8E1ToxGMLWIJobMKdO6tigDYMJ6BTHU0D5a5YDEnQ7bIVYUDEv22BT/KfYJrmV2Z/mTLCA1Y9z2u+4t+it3A+HHilqPuiXik96szZW8bRaO1d3FyLGp7xj+0vETohLRer6/D1nFB2nhXYx6JIr8nRJjwBLNFvp3tI50AU5QBbsxVwIjN187/bJM/aI/YLa2HhfOWbhqXYrNVPqR9otGicHMtGV8ShSvVGVn93RCRABra33clMFY1odv0JIAdIwbbq4k6d4vC3RGR6dvfxt1jlu3XIZod6X8EESiC7E+NOmXtJJ7y4ijbWzHEeuUYn68+AxEpgXxS/06PzeSjHN5sC2kvRKSo88nkJZPFiYI5JkMWX6WCPw9RYkwBBa92IdRTFtK8kCGgkB63m60ykzxPZpjDCNEa7rVqQ2pnUEp7P/og1piynoWI/LMTIJAJlpYTsgWhF2LGuCEP3wXRwpQVE9idWreMmmwPjwYHPk/2dvXAnXHzVAyUPmOvM52dmYfc7Ot7IEprPzq1zlkgZ/8k/yfeGdGc1DvZPHXBpjp00uGx4MBnIZoPMJiTbZ1HdK4z3xHR7CNL3PdnEc0hlBuetLMLoqTlR6LnEQ1hZ4vefGtECdGziObYrw359xfRXfPo11EHPOTwEfNonu/XOcPZJ99xPXJNMflVrvbR2fH5jjKDcYIdL5znEM1LMWdXE/O+gRQ0L0jiJilow0G3k3407vQnD6W6gEhPu1rQ2rCZOrELIgydja5zDFciF9cpIt15sUMX7dRHNO4OowrrlDnS+DQeX+Hn0LwN1aO97Ax09OO4djbBKj2pdzlGmSmL+z0mQG7DAyH3QvQDkP7xMcVP44PkeWJ19K0cphqGL7gt7aq7+SYMnTJxGPzIuDGJzbZhgX7yIbo22/is2N0skDEnedzLU5x6waIdiKP7KJhNLd+72r21KGNACSuOz4dl0V95EFsbiXfNOEH7zbNLmbyx5zYIX3gqojFQMwnrWsT/VBgCunk6jZ2zgmgdDzjhp5nmS9kGs8Mn9z/Dt4OVpzjNu0Wr1B4ffMZpQTYsAp0Gf4Tb6WT5p5xXrrxLIcGa2nu1Vz6a52TX0WYZXxd6tdu3npQvyHR69DKjhuFU9+mITmTvv4Wo+guIFHxm9FqyTV16L0KkrBOLLRHuszmDTiIBpl09Wn8sItq1cpzZspL+Y1fYIcL4VAqqP1QKAiUJo8Dz01DO9ZHdr0BkTiP1N4y+f4V+1HmZo8bHioUSS4FPuANGOKs/CZHpXNzxwkfjwrCbJ+aqITOQ3jxt565aeTTasSG0aY50ElLEfQdFJmz3QRGD0aCP0fZtCC7NpxpCK4sBUvgYy4mOCawYLyTw6TaVVH2LWiCJRcXm390RUcRAcZvmJEOsaYPkfI9cpPtZIC3JpnwYVqc5b4f4NJZv/eHdojqjuys/REH7FBGOSnbY1tOyMyKEgGyA3JFn8hIbYhab84adEU0K6xlEUQnkmzqPXowofCaiqv+5gCimdtgwIugJnKHIDv+GHe+niAbf//VDKt8JkcYcOXPWtHPcm5jhlgGdO6+wMU6DoZ2kPYMIQ9xxvdowNmN/mWEQ66omqKUU5NRketh8OdpTUp3EoKr23k1mYvjtnR9MD8WD6Vleg2jMzkv7Jho5ufoYE40UfADUbG2O3FM/UsNegyhjHzn40ApePJ5P+UVauRqTQnN+ZN3CTcrnUky/veVEOUzcTRvLl6fkDI7ldgdz8d5+2C66yw9nHcvefqAf1ihvT13LZNpS+/j59rcS65/QivJoHuWi2cvP9wxLvrJkKJ7KP3Qs270csU/xtmAqCjnZIPNc2P0cy8/yiGmd7nrz9uuHfUdE39OCvoi+iL6Ivoi+iL6Ivoi+iL6Ivoi+iL6Ivoi+iF6HaNgqVjDh/4KdYfCPZXv4wF6DqPvB5PMcj+Hc2k35KkTattGuur0P7EWIOu16KYSQ7b6AnogIPS/ogLU7f+aJiDDFv9HKdH8I0VPKF9EX0RfRF9EX0RfRF9HeiJT5C0UniEz/F0o3I3J4UPLnl3Y6x7H6O4Vlf7Sw/K+UP9tF3/It3/It3/It3/It3/It3/LMwgvGGB5RgvlB82IqPOZbSX6x+eZ0gDXe+MePMo3Cg0RzOGq0SMp0dHv6IVacK3N62ZNEpmmtsrPHRi3/ur0xkj/5ucvsQgrSu8vhnjoJKWuJGyGFKLNKzKXATLxjwY2fVfqTZQd8Wci6rqWolud041WJh1IhzYQKvYlA+eJKJc6VMVl7luaAwS5PnuGngKraByy+lrh/VQY/FMy7UoXghl8yK+ebAXe6YnqW2ob4tpZTmi06BXqkGQxRGd6CP2xbi0PGynb+kMxEmO5P/0yHGtNpKIsDvPRUK1UeDQPKN+kaKWTjXVBWQGVar7VW8GFZ4nmazij81QjKcd06BXdtQ+drFdI7p6ErZO2sN1MFBFyGbpOtc960gKhuuk4p0zZN41xHO31L2VjcxmyAlsAdzaqzTVO3Bh6rm6aH54dkcdDoZt79TIigVj/wbq+amN0mGdGY2d1JPCy4kr41QCM7VKLHaJEqtngpLP0a3qik0/BYiVm0ShlaV4s4DlprYmIdzMDeOUknSNeu7aGPDkCltSrIoqxEDZXHnDR0mqr+sUgLkxtYLcqSQS28zEt6fkjXjvEqbdyCPxW43+MpX8XpmJNB4ybjosjy2mOrAIMp8OtD8nGe5c38i8V0HhbeYJRvxtUlMR6GQSXx/Cnc12+bgmjiqQaY3RLerT3u+8dDpQFHGwkCLdsiAUQE9c/+ZYQI/h2u8OFsBGzFJb+J9I6Po6XzGF085qfIqp5eY3lJGOicbkqyia07RizlmCrCVozzCdsQ+AM/+676B3RaMxyfgzU1BucX51QDVrASH6SzhQpOiCrG6Ohv6GD4SEQU/4ogOGWnmI9KGBgr0ePFKVvQmBAnpt0eaBDMKY5s+JWcvOCHPoKWa+fPwBgcf8OcgArHtFtF7QgRG9q0wEwGMIzRqFvEPqpwg7PwfuzflpoDHwtizOXQU96eZMbM9E4QDWmKeAwYs7cjik0tprWForN++iqjFCZ9RcOUpsASER1hdYqoo3kyI4LnJB0omePzjU5i9a4hGqhjNBKuylUf7kAE0y5tN4oJxNeAMfxoR6nYcYKEcIJI9TDqWIII6FblMK9HRHjgeTEOZ9FAv8vFRDqPKLrEjDPEyqCTBM3ic4g4BpVBFfmACNtCTSdtja2DVyI7cG2kWcZ1cq4BxQ5SE6WIZk41IxoFjDrUMTovySt5ERERNaYPRhITTTAsEc17dQd+EHskIXnICmBJ2GuU5ETb0M40xxoUJSX9h0WoIg43I2LsBBFd4gdhYWwLu/zaRUTEvmFNU533eJB13LB/gkhbkGiGUlsTEQW15D/U33RuYgEtqvG0DN+gCMSSGkAPAqCYzOqmPsIKYm4UXFqgtQ6/Ijrwg7S+VygkhJiE5Awio6NQQ8V0M6Ljyao6Q2xQeo9runa4E5uPN2E1liCbKBckfPcmRJQwBVbcIvKhRG64hCg74FEJGk/ahkalprunj84iInlP2kjT+aGZcMIOElsthhXwd0T4TE8TEuqU3LiMKOc5JRloQAAzRsel/LZ55M+MOoXnRhcjTQ9sXHe0TrLIGmsSyIvxHI0b+ojV0M1YQNJInr3SR4NiU0CjWvI4s/wsrytK4nXQ/f48Z2DIGYifE00UdwQujbFlxxrwRH26ARHKiCZK9+4nXZKOETE+ZmeUNWYsIoEHZU1DK80t69Fl7l1KyqFDAgqmsKTDsROZYVJib0BEy3Yby0+Ph4Gy31bYemi3Ax+FgBsRody1XGHZsMKWzfA0aNokR1iaWqc1+B0RI2KD51j4RFxd0stZJaNawZDAcGQUCGZRgC9ul4LMsRSEaeSL2o9pvTkHKcs8jgi/ZscpvKjHkh5+uzmMBGaWeADN5eZRd1FS5VkzHdtEL/fLUXcPohxqWsMEZmiFwRabBsWCHsfTwuMEQAIm5mDChKGNwzd41B8EX2gTfN7/kGgTxo51p3RoqBrwrHZRDkVOWrWdrw+gL5yR/inlG7yS88TkQ4j4cC4Uq8ysx0TpaRgUEz3AynEGDM3Ao3aI0i9uBLBDJs0i4dcs4/EXG+XR2Ec8vowJnGL+YdFrPKMqji+PqaNJUPXtYC2YNL7UIhA1vrTEPpp/+fHLpOSR3BjLKIPQiuLGE+TIJNGCrJKTCk0JXFG4pANCo1CWl0Ihk4myMdwEhqCdBLGYssACJBG1ZOCTflp5qJnwU01HnzqQlj1RGSZGJXGyy/kifBqW874VdIlX0qn5Nj6uRmtBWcGD0JwllApojyMQu6sPzpFI0KJBg/0TDQx9A/oArIcl2jwM/dIgIoH6CTcxVMq3dNQ6l867Hl9u/ChEkVIerNNwuQbpSYI+WdZNB+/BEokWlyjnFbJp3UBr1FWButU/pqdLVd36eFvikikaXF1AHmvrKq8bjT+sRVuM9laP8x5nWy3qPgpsLZ6YBVectQ7+s2SXcj7+6sm6JeCmg2IpjxswNFF3g3VrPCMM+11CU8erMRN72YZIxQU7IgK+PNCysX3TT+Ml+HRvx9t40w6f9lU+0rNo5MJ/+gERrIpoD6wECmyU2fmAVyYDILC9KjEH5ulNkoN5fLmWqQWygnuFiDRLFBxBn5upjEMsP7Jmxsokl+ZPV6hYJI+XrLporYxMdJqq98fWJK+kbxdrLM/rCiPtHpgVH+3mjM+F2ORY2PJmYslHBpqcspXH5NFIc7LaL2ieXGPZyadZ8kB+dHPx7nF9/lb5D4wdOQbCwIjsAAAAAElFTkSuQmCC" alt="" width="28" height="40">
-      <p>Nội dung được chuyển thể từ Bộ Quy chuẩn Tác phong Chuyên nghiệp của Bệnh viện Phụ sản Quốc tế Sài Gòn (SIHospital). Khi có khác biệt, văn bản chính thức của Bệnh viện là căn cứ. Dữ liệu học tập chỉ lưu trên thiết bị này.</p>
+      <p>Nội dung được chuyển thể từ Bộ Quy chuẩn Tác phong Chuyên nghiệp của Bệnh viện Phụ sản Quốc tế Sài Gòn (SIHospital). Khi có khác biệt, văn bản chính thức của Bệnh viện là căn cứ. Tiến độ học tập chỉ lưu trên thiết bị này; riêng kết quả bài kiểm tra (kèm họ tên, số điện thoại, email người làm bài) được gửi tới đơn vị tổ chức khóa học khi nộp bài.</p>
     </footer>
   </div>
 </div>
@@ -442,6 +456,42 @@ const CONFIG = {
   passScore: 80,    // mốc tham khảo của khóa học (Điều 106 có mốc 80/100 cho sát hạch sau đào tạo lại)
   steadyStreak: 2,  // số lần luyện đúng liên tiếp để hiển thị "đã luyện đúng liên tiếp"
   historyLimit: 40
+};
+
+
+/* =====================================================================
+   CẤU HÌNH GỬI KẾT QUẢ VỀ GOOGLE FORM  (dành cho người quản trị)
+   ---------------------------------------------------------------------
+   Khi người học bấm “Nộp bài”, trình duyệt gửi Họ tên, Số điện thoại,
+   Email và điểm số tới Google Form dưới đây (cần Internet lúc gửi).
+   1) formUrl: dán link Google Form (đuôi /viewform hoặc /formResponse đều được).
+      Không dùng link rút gọn forms.gle. Form phải để chế độ “Bất kỳ ai có link
+      đều trả lời được”, KHÔNG bật “Yêu cầu đăng nhập”, KHÔNG giới hạn 1 phản hồi.
+   2) fields: điền mã trường dạng 'entry.1234567890' cho từng ô muốn nhận.
+      Để trống '' nếu form không có ô đó (ô để trống sẽ không được gửi).
+      Cách lấy mã: trong Google Form bấm ⋮ → “Nhận đường liên kết điền sẵn”,
+      điền thử mỗi ô một giá trị, bấm “Nhận đường liên kết”, mã nằm trong link.
+   Mọi ô trong Form nên là loại “Câu trả lời ngắn” để nhận được mọi giá trị.
+   ===================================================================== */
+const SUBMIT = {
+  enabled: true,
+  formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdzIIl2uXzW9NGN3kK86hCJP-hL6qSIKD-dVovJU4NF9OhwAw/viewform?usp=header',
+  fields: {
+    name: 'entry.232055975',        // Họ và tên
+    phone: 'entry.304219992',       // Số điện thoại
+    email: 'entry.1523437707',       // Email
+    score: 'entry.190407187',       // Điểm số = số câu đúng / tổng số câu, ví dụ “25/30”
+    percent: '',     // Điểm thang 100, ví dụ “83,3”
+    correct: '',     // Số câu đúng
+    wrong: '',       // Số câu sai
+    unanswered: '',  // Số câu bỏ trống
+    total: '',       // Tổng số câu
+    byTopic: '',     // Kết quả theo từng chủ đề (văn bản)
+    attemptId: '',   // Mã lượt làm bài (để loại bản trùng)
+    submittedAt: ''  // Thời điểm nộp bài
+  },
+  timeoutMs: 15000,
+  autoRetryLimit: 5
 };
 
 const GROUPS = [
@@ -2028,7 +2078,7 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
   /* ---------- Lưu trữ cục bộ (an toàn khi lỗi) ---------- */
   const Store = {
     ok: true, corrupt: false, data: null,
-    defaults() { return { v: 1, lessons: {}, qc: {}, cards: {}, scen: {}, attempts: [], wrong: {}, practice: [], inprogress: null }; },
+    defaults() { return { v: 1, lessons: {}, qc: {}, cards: {}, scen: {}, attempts: [], wrong: {}, practice: [], inprogress: null, profile: null }; },
     isObj(x) { return x && typeof x === 'object' && !Array.isArray(x); },
     valid(d) {
       return this.isObj(d) && d.v === 1 && this.isObj(d.lessons) && this.isObj(d.qc) && this.isObj(d.cards) &&
@@ -2257,7 +2307,7 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
       <ul>
         <li>Nội dung được chuyển thể từ tài liệu nguồn nhằm dễ hiểu, dễ nhớ; mọi dẫn chiếu theo Chương/Điều/Khoản. Tài liệu .docx không có số trang cố định nên khóa học không ghi số trang.</li>
         <li>Điểm bài kiểm tra và luyện tập chỉ phục vụ tự học, <strong>không phải</strong> kết quả đánh giá chính thức theo Chương XIV của Bộ Quy chuẩn.</li>
-        <li>Tiến độ chỉ lưu trên trình duyệt của thiết bị này, không gửi đi đâu và có thể không chuyển sang thiết bị khác. Không cần tài khoản.</li>
+        <li>Tiến độ học tập (bài đã học, thẻ, tình huống, luyện tập) chỉ lưu trên trình duyệt của thiết bị này và có thể không chuyển sang thiết bị khác. Riêng khi <strong>nộp bài kiểm tra</strong>, họ tên, số điện thoại, email và điểm số được gửi tới đơn vị tổ chức khóa học.</li>
       </ul>
     </section>`;
   };
@@ -2396,6 +2446,81 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
     </div>`}`;
   };
 
+
+  /* ---------- Thông tin người làm bài và gửi kết quả về Google Form ---------- */
+  function cleanProfile(p) {
+    return { name: String(p.name || '').trim().replace(/\s+/g, ' '), phone: String(p.phone || '').trim(), email: String(p.email || '').trim() };
+  }
+  function profileErrors(p, consent) {
+    const e = {};
+    if (p.name.length < 2 || !/[A-Za-zÀ-ỹ]/.test(p.name)) e.name = 'Vui lòng nhập họ và tên đầy đủ.';
+    const ph = p.phone.replace(/[\s.\-()]/g, '');
+    if (!/^(0|\+84|84)\d{9,10}$/.test(ph)) e.phone = 'Số điện thoại chưa đúng (ví dụ: 0901234567).';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(p.email)) e.email = 'Email chưa đúng (ví dụ: ten@congty.vn).';
+    if (!consent) e.consent = 'Bạn cần đồng ý gửi thông tin để làm bài kiểm tra.';
+    return e;
+  }
+  function formEndpoint() {
+    let u = String(SUBMIT.formUrl || '').trim();
+    u = u.replace(/\/(viewform|formResponse|edit)[^/]*$/, '').replace(/\/+$/, '');
+    return /^https:\/\/docs\.google\.com\/forms\/.+/.test(u) ? u + '/formResponse' : '';
+  }
+  function submitReady() { return !!(SUBMIT.enabled && formEndpoint()); }
+  function topicText(att) {
+    return GROUPS.filter(g => att.byGroup[g.id]).map(g => { const b = att.byGroup[g.id]; return g.name + ': ' + b.c + '/' + b.t; }).join(' | ');
+  }
+  function buildPayload(att) {
+    const f = SUBMIT.fields; const p = new URLSearchParams();
+    const put = (k, v) => { if (f[k]) p.append(f[k], String(v)); };
+    put('name', att.profile.name); put('phone', att.profile.phone); put('email', att.profile.email);
+    put('score', att.correct + '/' + att.total); put('percent', num(att.score));
+    put('correct', att.correct); put('wrong', att.wrong); put('unanswered', att.unanswered); put('total', att.total);
+    put('byTopic', topicText(att)); put('attemptId', att.id); put('submittedAt', dateStr(att.ts));
+    return p;
+  }
+  function syncLabel(att) {
+    const st = att.sync && att.sync.state;
+    return st === 'sent' ? 'Đã gửi' : st === 'sending' ? 'Đang gửi' : st === 'failed' || st === 'pending' ? 'Chưa gửi được' : st === 'off' ? 'Chỉ lưu trên thiết bị' : '—';
+  }
+  function syncHTML(att) {
+    if (!att.profile) return '';
+    const s = att.sync || { state: 'off' };
+    if (s.state === 'sent') return `<div class="callout callout--ok" role="status"><h2>✓ Đã gửi kết quả về hệ thống</h2><p>Họ tên, số điện thoại, email và điểm số (${att.correct}/${att.total} câu đúng, ${num(att.score)}/100) đã được gửi lúc ${esc(dateStr(s.ts))}.</p><p class="small muted">Trình duyệt chỉ biết dữ liệu đã được gửi đi; không đọc được xác nhận từ phía hệ thống nhận.</p></div>`;
+    if (s.state === 'sending') return `<div class="callout callout--note" role="status"><h2>Đang gửi kết quả…</h2><p>Vui lòng giữ trang này mở trong giây lát.</p></div>`;
+    if (s.state === 'off') return `<div class="callout callout--warn" role="status"><h2>Chưa kết nối hệ thống nhận kết quả</h2><p>Kết quả của bạn đã được tính và lưu trên thiết bị này, nhưng chưa được gửi đi vì người quản trị chưa cấu hình liên kết Google Form. Vui lòng báo người phụ trách khóa học.</p></div>`;
+    return `<div class="callout callout--warn" role="status"><h2>Chưa gửi được kết quả</h2><p>${navigator.onLine === false ? 'Thiết bị đang không có kết nối mạng. ' : ''}Kết quả đã được lưu trên thiết bị. Hệ thống sẽ tự gửi lại khi có mạng, hoặc bạn có thể bấm nút bên dưới.</p><p><button type="button" class="btn btn--primary" data-act="sync-retry" data-id="${esc(att.id)}">Gửi lại ngay</button></p></div>`;
+  }
+  function refreshSync(att) {
+    const box = $('#sync-box');
+    if (box && currentRoute().name === 'exam' && currentRoute().arg === 'result' && (currentRoute().arg2 === att.id || !currentRoute().arg2)) box.innerHTML = syncHTML(att);
+  }
+  const sending = {};
+  async function sendAttempt(att) {
+    if (!att || !att.profile || sending[att.id]) return;
+    if (!submitReady()) { att.sync = { state: 'off' }; Store.save(); refreshSync(att); return; }
+    if (att.sync && att.sync.state === 'sent') return;
+    const tries = ((att.sync && att.sync.tries) || 0) + 1;
+    sending[att.id] = true;
+    att.sync = { state: 'sending', tries: tries, ts: Date.now() }; Store.save(); refreshSync(att);
+    if (navigator.onLine === false) { att.sync = { state: 'failed', tries: tries, ts: Date.now() }; delete sending[att.id]; Store.save(); refreshSync(att); return; }
+    let ctl = null, timer = null;
+    try {
+      if (typeof AbortController === 'function') { ctl = new AbortController(); timer = setTimeout(() => ctl.abort(), SUBMIT.timeoutMs); }
+      await fetch(formEndpoint(), { method: 'POST', mode: 'no-cors', body: buildPayload(att), signal: ctl ? ctl.signal : undefined });
+      att.sync = { state: 'sent', tries: tries, ts: Date.now() };
+    } catch (e) {
+      att.sync = { state: 'failed', tries: tries, ts: Date.now() };
+    }
+    if (timer) clearTimeout(timer);
+    delete sending[att.id]; Store.save(); refreshSync(att);
+    announce(att.sync.state === 'sent' ? 'Đã gửi kết quả về hệ thống' : 'Chưa gửi được kết quả');
+  }
+  async function retryPending(manual) {
+    if (!submitReady()) return;
+    const list = D().attempts.filter(a => a.profile && a.sync && a.sync.state !== 'sent' && a.sync.state !== 'off' && (manual || (a.sync.tries || 0) < SUBMIT.autoRetryLimit));
+    for (let i = 0; i < list.length; i++) { await sendAttempt(list[i]); }
+  }
+
   /* ---------- Bài kiểm tra ---------- */
   function pickExam() {
     const chosen = [];
@@ -2411,8 +2536,8 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
     });
     return shuffle(chosen).map(q => ({ q: q.id, perm: shuffle(identityPerm(q.opts.length)), ch: null }));
   }
-  function startExam() {
-    D().inprogress = { id: uid(), ts: Date.now(), cur: 0, lines: pickExam() };
+  function startExam(profile) {
+    D().inprogress = { id: uid(), ts: Date.now(), cur: 0, lines: pickExam(), profile: profile };
     Store.save();
   }
   function grade(ip) {
@@ -2435,6 +2560,8 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
   function submitExam() {
     const ip = D().inprogress; if (!ip) return null;
     const att = grade(ip);
+    att.profile = ip.profile || null; att.locked = true;
+    att.sync = (att.profile && submitReady()) ? { state: 'pending', tries: 0 } : { state: 'off' };
     D().attempts.push(att);
     if (D().attempts.length > CONFIG.historyLimit) D().attempts = D().attempts.slice(-CONFIG.historyLimit);
     att.lines.forEach(x => {
@@ -2462,6 +2589,18 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
       <p class="rv-e">${fmt(q.exp)}</p><p class="src">Nguồn: ${esc(q.src)} · ${qSrcLink(q)}</p></article>`;
   }
   let EXV = { filter: 'all' };
+
+  function profileFormHTML() {
+    const p = D().profile || { name: '', phone: '', email: '' };
+    return `<form id="prof-form" class="pf" novalidate aria-describedby="pf-note">
+      <p id="pf-note" class="small muted">Điền đủ 3 thông tin dưới đây (bắt buộc) để bắt đầu làm bài.</p>
+      <div class="pf-f"><label for="pf-name">Họ và tên <span class="req" aria-hidden="true">*</span></label><input id="pf-name" type="text" autocomplete="name" required value="${esc(p.name)}" aria-describedby="err-name"><p class="err" id="err-name" role="alert"></p></div>
+      <div class="pf-f"><label for="pf-phone">Số điện thoại <span class="req" aria-hidden="true">*</span></label><input id="pf-phone" type="tel" inputmode="tel" autocomplete="tel" required value="${esc(p.phone)}" aria-describedby="err-phone"><p class="err" id="err-phone" role="alert"></p></div>
+      <div class="pf-f"><label for="pf-email">Email <span class="req" aria-hidden="true">*</span></label><input id="pf-email" type="email" inputmode="email" autocomplete="email" required value="${esc(p.email)}" aria-describedby="err-email"><p class="err" id="err-email" role="alert"></p></div>
+      <div class="pf-f pf-c"><label class="chk"><input id="pf-consent" type="checkbox" aria-describedby="err-consent"> <span>Tôi đồng ý để họ tên, số điện thoại, email và kết quả bài kiểm tra của tôi được gửi tới đơn vị tổ chức khóa học để quản lý đào tạo. <span class="req" aria-hidden="true">*</span></span></label><p class="err" id="err-consent" role="alert"></p></div>
+      <p><button type="submit" class="btn btn--primary">Bắt đầu làm bài</button></p>
+    </form>`;
+  }
   views.exam = function (r) {
     if (r.arg === 'result') return examResult(r.arg2);
     const ip = D().inprogress;
@@ -2475,9 +2614,10 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
         <li>Bạn có thể quay lại sửa đáp án trước khi nộp. Nếu còn câu chưa trả lời, hệ thống sẽ hỏi xác nhận.</li>
         <li>Câu bỏ trống được tính riêng, không bị tính là trả lời sai.</li>
         <li>Điểm theo thang 100 chỉ để tự học, không thay thế đánh giá chính thức theo Chương XIV.</li>
-        <li>Bài làm dở được lưu trên thiết bị để tiếp tục sau.</li></ul></article>
-      <article class="panel"><h2>Bắt đầu</h2>
-        ${ip ? `<p>Bạn có một bài đang làm dở (bắt đầu lúc ${esc(dateStr(ip.ts))}, đã trả lời ${ip.lines.filter(x => x.ch != null).length}/${ip.lines.length} câu).</p><p><button type="button" class="btn btn--primary" data-act="exam-continue">Tiếp tục bài đang làm</button> <button type="button" class="btn btn--ghost" data-act="exam-new">Bỏ bài này, làm bài mới</button></p>` : `<p><button type="button" class="btn btn--primary" data-act="exam-new">Bắt đầu làm bài</button></p>`}
+        <li>Bài làm dở được lưu trên thiết bị để tiếp tục sau.</li>
+        <li>Khi bấm “Nộp bài”, đề được khóa lại, điểm được tính ngay và <strong>họ tên, số điện thoại, email cùng điểm số được gửi về hệ thống</strong> của đơn vị tổ chức (cần kết nối mạng; nếu mất mạng, hệ thống tự gửi lại sau).</li></ul></article>
+      <article class="panel"><h2>${ip ? 'Bài đang làm dở' : 'Thông tin người làm bài'}</h2>
+        ${ip ? `<p>Thí sinh: <strong>${esc((ip.profile && ip.profile.name) || '—')}</strong>. Bài bắt đầu lúc ${esc(dateStr(ip.ts))}, đã trả lời ${ip.lines.filter(x => x.ch != null).length}/${ip.lines.length} câu.</p><p><button type="button" class="btn btn--primary" data-act="exam-continue">Tiếp tục bài đang làm</button> <button type="button" class="btn btn--ghost" data-act="exam-discard">Bỏ bài này, làm bài mới</button></p>` : profileFormHTML()}
         ${la ? `<hr><p class="small muted">Lần gần nhất: <strong>${num(la.score)}/100</strong> (${esc(dateStr(la.ts))}). <a href="#/exam/result/${la.id}">Xem lại</a> · <a href="#/review">Ôn tập theo lỗi sai</a></p>` : ''}
       </article></div>`;
   };
@@ -2486,7 +2626,7 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
     const L = ip.lines[cur]; const q = QBY[L.q];
     const answered = ip.lines.filter(x => x.ch != null).length;
     return `<h1 class="sr">Đang làm bài kiểm tra</h1>
-    <div class="ex-head"><p class="ex-prog"><strong>Câu ${cur + 1}/${ip.lines.length}</strong> · Đã trả lời ${answered}/${ip.lines.length}</p><div class="bar"><div class="bar-f" style="width:${answered / ip.lines.length * 100}%"></div></div></div>
+    <div class="ex-head"><p class="ex-prog"><strong>Câu ${cur + 1}/${ip.lines.length}</strong> · Đã trả lời ${answered}/${ip.lines.length}${ip.profile ? ` · <span class="muted">Thí sinh: ${esc(ip.profile.name)}</span>` : ''}</p><div class="bar"><div class="bar-f" style="width:${answered / ip.lines.length * 100}%"></div></div></div>
     <nav class="palette" aria-label="Danh sách câu hỏi">${ip.lines.map((x, i) => `<button type="button" class="pal${i === cur ? ' is-cur' : ''}${x.ch != null ? ' is-ans' : ''}" data-act="exam-go" data-i="${i}" aria-label="Câu ${i + 1}${x.ch != null ? ', đã trả lời' : ', chưa trả lời'}"${i === cur ? ' aria-current="true"' : ''}>${i + 1}</button>`).join('')}</nav>
     <article class="qcard" ${gcs(q.group)}><p class="qmeta">${levelTag(q)}</p>${q.ctx ? `<p class="ctx"><strong>Tình huống.</strong> ${esc(q.ctx)}</p>` : ''}<h2 class="qtext">${esc(q.q)}</h2>
     ${optionsHTML(q, L.perm, L.ch, { feedback: false, act: 'exam-pick' })}
@@ -2500,10 +2640,12 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
     const answered = att.total - att.unanswered;
     const pass = att.score >= CONFIG.passScore;
     return `<h1>Kết quả bài kiểm tra</h1>
-    <p class="muted small">Lượt nộp lúc ${esc(dateStr(att.ts))} · <strong>Kết quả bài kiểm tra</strong> (khác với kết quả luyện tập câu sai).</p>
+    <p class="muted small">Lượt nộp lúc ${esc(dateStr(att.ts))} · <strong>Kết quả bài kiểm tra</strong> (khác với kết quả luyện tập câu sai). Bài đã được khóa, không thể sửa đáp án.</p>
+    ${att.profile ? `<p class="who"><strong>Thí sinh:</strong> ${esc(att.profile.name)} · ${esc(att.profile.phone)} · ${esc(att.profile.email)}</p>` : ''}
+    <div id="sync-box">${syncHTML(att)}</div>
     <section class="score-row">
       <div class="score"><span class="score-n">${num(att.score)}</span><span class="score-d">/100</span></div>
-      <ul class="stats"><li><strong>${att.correct}</strong> câu đúng</li><li><strong>${att.wrong}</strong> câu sai</li><li><strong>${att.unanswered}</strong> câu chưa trả lời</li><li>Tỷ lệ hoàn thành: <strong>${num(answered / att.total * 100)}%</strong> (${answered}/${att.total} câu)</li></ul>
+      <ul class="stats"><li class="frac"><strong>${att.correct}/${att.total}</strong> câu đúng</li><li><strong>${att.correct}</strong> đúng</li><li><strong>${att.wrong}</strong> câu sai</li><li><strong>${att.unanswered}</strong> câu chưa trả lời</li><li>Tỷ lệ hoàn thành: <strong>${num(answered / att.total * 100)}%</strong> (${answered}/${att.total} câu)</li></ul>
     </section>
     <p class="callout callout--note small">Mốc tham khảo của khóa học: ${CONFIG.passScore}/100 — ${pass ? 'bạn đã đạt mốc này.' : 'bạn chưa đạt mốc này; hãy ôn lại các chủ đề bên dưới.'} Đây là mốc tự học, không phải quy định chính thức của Bệnh viện.</p>
     <h2>Kết quả theo chủ đề</h2>${groupTable(att)}
@@ -2625,21 +2767,21 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
     <p class="lead">Ba loại kết quả được tách riêng để tránh nhầm lẫn: <strong>bài kiểm tra</strong>, <strong>luyện tập câu sai</strong> và <strong>lịch sử học tập lưu trên thiết bị</strong>.</p>
     <section class="panel-row"><article class="panel"><h2>Lịch sử học tập trên thiết bị</h2><ul class="stats stats--col"><li>Bài học hoàn thành: <strong>${lessonsDone()}/${LESSONS.length}</strong></li><li>Tình huống đã thử: <strong>${SCENARIOS.filter(s => D().scen[s.id] && D().scen[s.id].tries).length}/${SCENARIOS.length}</strong></li><li>Thẻ đã nhớ: <strong>${known}</strong> · cần ôn tập: <strong>${rev}</strong></li><li>Số lần làm bài kiểm tra: <strong>${at.length}</strong></li></ul></article>
     <article class="panel"><h2>Điểm gần nhất</h2>${at.length ? `<p class="big">${num(at[at.length - 1].score)}<small>/100</small></p><p class="muted small">${at.length > 1 ? `Lượt trước đó: ${num(at[at.length - 2].score)}/100 — ${at[at.length - 1].score > at[at.length - 2].score ? 'tăng' : at[at.length - 1].score < at[at.length - 2].score ? 'giảm' : 'không đổi'} ${num(Math.abs(at[at.length - 1].score - at[at.length - 2].score))} điểm.` : 'Làm thêm lượt nữa để so sánh tiến bộ.'}</p>` : '<p class="muted">Chưa có dữ liệu.</p>'}</article></section>
-    <section><h2>Kết quả các lượt kiểm tra</h2>${at.length ? chartSVG(at) + `<div class="tbl-wrap" tabindex="0" role="region" aria-label="Bảng các lượt kiểm tra"><table><thead><tr><th scope="col">Lượt</th><th scope="col">Thời gian</th><th scope="col">Điểm</th><th scope="col">Đúng</th><th scope="col">Sai</th><th scope="col">Bỏ trống</th><th scope="col"><span class="sr">Xem</span></th></tr></thead><tbody>${at.slice().reverse().map((a, i) => `<tr><th scope="row">${at.length - i}</th><td>${esc(dateStr(a.ts))}</td><td>${num(a.score)}</td><td>${a.correct}</td><td>${a.wrong}</td><td>${a.unanswered}</td><td><a href="#/exam/result/${a.id}">Xem lại</a></td></tr>`).join('')}</tbody></table></div>` : '<p class="muted">Chưa có lượt kiểm tra nào.</p>'}</section>
+    <section><h2>Kết quả các lượt kiểm tra</h2>${at.length ? chartSVG(at) + `<div class="tbl-wrap" tabindex="0" role="region" aria-label="Bảng các lượt kiểm tra"><table><thead><tr><th scope="col">Lượt</th><th scope="col">Thời gian</th><th scope="col">Điểm</th><th scope="col">Đúng</th><th scope="col">Sai</th><th scope="col">Bỏ trống</th><th scope="col">Gửi hệ thống</th><th scope="col"><span class="sr">Xem</span></th></tr></thead><tbody>${at.slice().reverse().map((a, i) => `<tr><th scope="row">${at.length - i}</th><td>${esc(dateStr(a.ts))}</td><td>${num(a.score)}</td><td>${a.correct}</td><td>${a.wrong}</td><td>${a.unanswered}</td><td>${esc(syncLabel(a))}</td><td><a href="#/exam/result/${a.id}">Xem lại</a></td></tr>`).join('')}</tbody></table></div>` : '<p class="muted">Chưa có lượt kiểm tra nào.</p>'}</section>
     <section><h2>Chủ đề còn yếu (tích lũy các lượt)</h2>${weak.length ? `<ul class="need-list">${weak.map(o => { const s = statusOf(o.pct); return `<li class="need" ${gcs(o.g.id)}><div><h3>${esc(o.g.name)}</h3><p class="small"><span class="badge badge--${s.k}">${s.icon} ${s.label}</span> ${o.pct}% đúng (${o.c}/${o.t} câu qua ${at.length} lượt)</p><div class="bar"><div class="bar-f bar-f--${s.k}" style="width:${o.pct}%"></div></div></div><a class="btn btn--sm" href="#/lesson/${LESSONS.find(l => l.group === o.g.id).id}">Học lại</a></li>`; }).join('')}</ul>` : (agg.length ? '<p class="muted">Chưa có chủ đề nào dưới mức “Nắm vững” trong dữ liệu hiện có. Tiếp tục ôn định kỳ.</p>' : '<p class="muted">Chưa có dữ liệu.</p>')}</section>
     <section><h2>Những câu thường trả lời sai</h2>${often.length ? `<ol class="plain">${often.map(w => `<li><strong>${esc(QBY[w.id].q)}</strong><br><span class="small muted">Sai ${w.n} lần · ${esc(stateOfWrong(w).label)} · <a href="#/lesson/${QBY[w.id].lesson}">Bài ${lessonNo(QBY[w.id].lesson)}</a></span></li>`).join('')}</ol>` : '<p class="muted">Chưa có câu nào bị trả lời sai.</p>'}
       ${wl.length ? `<p class="small">Câu đã luyện đúng liên tiếp từ ${CONFIG.steadyStreak} lần: <strong>${solid.length}/${wl.length}</strong>. Đây chỉ cho biết bạn đang củng cố tốt; không có nghĩa kiến thức đã thành thạo.</p>` : ''}</section>
     <section><h2>Kết quả luyện tập câu sai <span class="small muted">(không tính vào điểm kiểm tra)</span></h2>${prac.length ? `<div class="tbl-wrap" tabindex="0" role="region" aria-label="Bảng luyện tập"><table><thead><tr><th scope="col">Thời gian</th><th scope="col">Số câu</th><th scope="col">Đúng</th><th scope="col">Còn sai</th></tr></thead><tbody>${prac.slice().reverse().slice(0, 10).map(p => `<tr><td>${esc(dateStr(p.ts))}</td><td>${p.total}</td><td>${p.correct}</td><td>${p.total - p.correct}</td></tr>`).join('')}</tbody></table></div>` : '<p class="muted">Chưa có lượt luyện tập nào.</p>'}</section>
-    <section class="callout callout--note"><h2>Dữ liệu trên thiết bị này</h2><p>${Store.ok ? 'Tiến độ được lưu cục bộ trong trình duyệt của thiết bị này, không gửi đến máy chủ hay dịch vụ nào, và có thể không chuyển sang thiết bị hoặc trình duyệt khác.' : '<strong>Trình duyệt không cho phép lưu dữ liệu</strong>, nên tiến độ chỉ có trong phiên hiện tại.'}</p><p><button type="button" class="btn btn--danger" data-act="reset-all">Xóa dữ liệu học tập</button></p></section>`;
+    <section class="callout callout--note"><h2>Dữ liệu trên thiết bị này</h2><p>${Store.ok ? 'Tiến độ học tập được lưu cục bộ trong trình duyệt của thiết bị này và có thể không chuyển sang thiết bị hoặc trình duyệt khác. Chỉ kết quả bài kiểm tra (kèm họ tên, số điện thoại, email bạn đã nhập) được gửi tới đơn vị tổ chức khóa học khi bạn nộp bài; tiến độ học và kết quả luyện tập không được gửi.' : '<strong>Trình duyệt không cho phép lưu dữ liệu</strong>, nên tiến độ chỉ có trong phiên hiện tại.'}</p><p><button type="button" class="btn btn--danger" data-act="reset-all">Xóa dữ liệu học tập</button></p></section>`;
   };
 
   /* ---------- Hướng dẫn và ghi chú quản trị ---------- */
   views.guide = function () {
     return `<h1>Hướng dẫn sử dụng</h1>
-    <section><h2>Tra cứu nhanh khi cần</h2><ul class="rules"><li>Bấm <strong>Tra cứu nhanh</strong> ở thanh bên hoặc ô tìm ở đầu trang (phím tắt: bấm <kbd>/</kbd>).</li><li>Nhập từ khóa (không cần gõ dấu), hoặc chọn <em>Chủ đề</em> rồi nhập thêm từ khóa, hoặc chọn thẳng một <em>câu hỏi thường gặp</em>: câu trả lời hiện ngay kèm nguồn Điều/Khoản.</li><li>Kết quả gồm Trả lời nhanh, Quy định trong bài học (kể cả các bảng) và Tình huống tham khảo; từ khóa được tô sáng.</li></ul></section><section><h2>Cách học</h2><ol class="plain"><li>Vào <a href="#/home">Tổng quan</a>, bấm “Bắt đầu học” hoặc chọn một bài ở thanh bên.</li><li>Đọc từng bài, làm phần Kiểm tra nhanh, rồi bấm “Đánh dấu đã hoàn thành”.</li><li>Luyện bằng <a href="#/scenarios">tình huống</a> và <a href="#/cards">thẻ ghi nhớ</a>.</li><li>Làm <a href="#/exam">bài kiểm tra cuối khóa</a>: ${Object.keys(CONFIG.blueprint).reduce((s, g) => s + CONFIG.blueprint[g], 0)} câu rút từ ngân hàng ${QUESTIONS.length} câu.</li><li>Sau khi nộp, vào <a href="#/review">Ôn tập theo lỗi sai</a> để xem chủ đề yếu, đọc giải thích, học lại bài và luyện lại các câu sai.</li></ol></section>
+    <section><h2>Tra cứu nhanh khi cần</h2><ul class="rules"><li>Bấm <strong>Tra cứu nhanh</strong> ở thanh bên hoặc ô tìm ở đầu trang (phím tắt: bấm <kbd>/</kbd>).</li><li>Nhập từ khóa (không cần gõ dấu), hoặc chọn <em>Chủ đề</em> rồi nhập thêm từ khóa, hoặc chọn thẳng một <em>câu hỏi thường gặp</em>: câu trả lời hiện ngay kèm nguồn Điều/Khoản.</li><li>Kết quả gồm Trả lời nhanh, Quy định trong bài học (kể cả các bảng) và Tình huống tham khảo; từ khóa được tô sáng.</li></ul></section><section><h2>Cách học</h2><ol class="plain"><li>Vào <a href="#/home">Tổng quan</a>, bấm “Bắt đầu học” hoặc chọn một bài ở thanh bên.</li><li>Đọc từng bài, làm phần Kiểm tra nhanh, rồi bấm “Đánh dấu đã hoàn thành”.</li><li>Luyện bằng <a href="#/scenarios">tình huống</a> và <a href="#/cards">thẻ ghi nhớ</a>.</li><li>Làm <a href="#/exam">bài kiểm tra cuối khóa</a> (nhập họ tên, số điện thoại, email và đồng ý gửi thông tin trước khi bắt đầu; khi nộp bài, đề bị khóa, điểm được tính và gửi về hệ thống): ${Object.keys(CONFIG.blueprint).reduce((s, g) => s + CONFIG.blueprint[g], 0)} câu rút từ ngân hàng ${QUESTIONS.length} câu.</li><li>Sau khi nộp, vào <a href="#/review">Ôn tập theo lỗi sai</a> để xem chủ đề yếu, đọc giải thích, học lại bài và luyện lại các câu sai.</li></ol></section>
     <section><h2>Ôn tập theo lỗi sai hoạt động thế nào</h2><ul class="rules"><li>Mỗi câu hỏi có mã, chủ đề, bài học và nguồn dẫn chiếu; hệ thống phân loại lỗi theo dữ liệu này, không đoán theo từ khóa.</li><li>Câu <strong>trả lời sai</strong> và câu <strong>chưa trả lời</strong> được tách riêng.</li><li>Chủ đề được đánh giá: từ ${CONFIG.masteredAt}% là “Nắm vững”, từ ${CONFIG.needsWorkAt}% đến dưới ${CONFIG.masteredAt}% là “Cần củng cố”, dưới ${CONFIG.needsWorkAt}% là “Chưa đạt”. Đây là cấu hình của khóa học tự học, không phải quy định của Bệnh viện.</li><li>Luyện lại câu sai cho phản hồi ngay. Trả lời đúng chỉ được ghi nhận là “đã luyện đúng”; lịch sử sai trước đó vẫn được giữ lại. Trả lời sai thì câu hỏi vẫn ở trong danh sách cần ôn.</li><li>Một câu chỉ hiển thị “đã luyện đúng liên tiếp” khi đúng từ ${CONFIG.steadyStreak} lần liên tiếp; vẫn không có nghĩa là thành thạo.</li></ul></section>
     <section><h2>Dùng trên điện thoại và máy tính</h2><p>Mở trực tiếp file .html bằng trình duyệt (không cần mạng). Trên điện thoại, bấm nút “Mục lục” ở góc trên để mở danh sách bài học.</p></section>
-    <section><h2>Dữ liệu và quyền riêng tư</h2><p>Mọi dữ liệu học tập chỉ lưu trong trình duyệt của thiết bị bạn. Không cần tài khoản, không có thông tin cá nhân, không gửi dữ liệu đi đâu. Dùng chế độ riêng tư hoặc xóa dữ liệu trình duyệt có thể làm mất tiến độ. Bạn có thể xóa dữ liệu học tập ở trang <a href="#/progress">Tiến bộ</a>.</p></section>
+    <section><h2>Dữ liệu và quyền riêng tư</h2><p>Tiến độ học tập (bài đã học, thẻ, tình huống, luyện tập câu sai) chỉ lưu trong trình duyệt của thiết bị bạn, không cần tài khoản. <strong>Khi làm bài kiểm tra</strong>, bạn nhập họ tên, số điện thoại, email; khi bấm “Nộp bài”, các thông tin này cùng điểm số được gửi tới đơn vị tổ chức khóa học (qua Google Form) để quản lý đào tạo. Thông tin bạn nhập cũng được nhớ trên thiết bị để điền sẵn lần sau; trên máy dùng chung hãy bấm “Xóa dữ liệu học tập” ở trang <a href="#/progress">Tiến bộ</a> sau khi dùng xong.</p></section>
     <section><h2>Dành cho quản trị: chỉnh sửa nội dung</h2><p>Toàn bộ nội dung nằm ngay trong file HTML, ở các khối dữ liệu: <code>COURSE</code>, <code>CONFIG</code>, <code>GROUPS</code>, <code>LESSONS</code>, các lệnh <code>Q(...)</code> (câu hỏi), <code>SC(...)</code> (tình huống), <code>FC(...)</code> (thẻ). Mỗi câu hỏi gồm: bài học, mức độ, nội dung, các đáp án, chỉ số đáp án đúng (tính từ 0), giải thích và nguồn dẫn chiếu. Chủ đề của câu hỏi được lấy từ bài học. Số câu mỗi chủ đề trong bài kiểm tra chỉnh ở <code>CONFIG.blueprint</code>.</p></section>`;
   };
   views.admin = function () {
@@ -2647,6 +2789,9 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
     <p class="lead">Trong quá trình chuyển thể, các điểm sau của tài liệu nguồn chưa nhất quán hoặc cần làm rõ. Khóa học giữ nguyên nội dung theo từng điều và đánh dấu để bạn xác minh trước khi phát hành.</p>
     <p class="muted small">Nguồn: ${esc(COURSE.docInfo)}</p>
     <ol class="verify">${VERIFY_ITEMS.map(v => `<li class="callout callout--warn"><h2>${esc(v.id)}. ${esc(v.title)}</h2><p class="small muted">Vị trí: ${esc(v.where)}</p><p>${fmt(v.text)}</p></li>`).join('')}</ol>
+    <section class="callout ${submitReady() ? 'callout--ok' : 'callout--warn'}"><h2>Gửi kết quả về Google Form: ${submitReady() ? 'đã cấu hình' : 'CHƯA cấu hình'}</h2>
+      <p>${submitReady() ? 'Liên kết Google Form đã được khai báo. Các ô đang nhận dữ liệu: <strong>' + Object.keys(SUBMIT.fields).filter(k => SUBMIT.fields[k]).join(', ') + '</strong>.' : 'Chưa có liên kết Google Form (hoặc liên kết không hợp lệ) nên khi nộp bài, kết quả chỉ lưu trên thiết bị người học.'}</p>
+      <ul><li>Cấu hình nằm ở khối <code>SUBMIT</code> trong file HTML (<code>formUrl</code> và các mã <code>entry.xxxxxxxx</code>).</li><li>Form phải cho phép “Bất kỳ ai có link” trả lời, không yêu cầu đăng nhập, không giới hạn 1 phản hồi, các ô là “Câu trả lời ngắn”.</li><li>Trình duyệt không đọc được phản hồi của Google Form, nên hãy kiểm tra thực tế bằng cách nộp thử một bài và xem trong Google Sheets của form.</li><li>Cần có Internet khi gửi. Nếu mất mạng, kết quả được giữ trên thiết bị và tự gửi lại khi có mạng (hoặc người học bấm “Gửi lại ngay”).</li><li>Mỗi lượt có mã lượt (<code>attemptId</code>) để lọc bản trùng nếu người học gửi lại.</li></ul></section>
     <section><h2>Quy ước của khóa học</h2><ul class="rules"><li>Không ghi số trang vì tệp nguồn .docx không có số trang cố định; dẫn chiếu theo Chương/Điều/Khoản.</li><li>Tình huống và ví dụ được xây dựng từ các ví dụ và câu mẫu trong tài liệu; một số tình huống dùng lại nguyên bối cảnh của ví dụ đúng/sai trong văn bản.</li><li>Các mốc “Nắm vững / Cần củng cố / Chưa đạt” và mốc điểm tham khảo ${CONFIG.passScore}/100 là cấu hình của khóa học tự học (mốc 80/100 tham chiếu Điều 106 về sát hạch sau đào tạo lại), không phải quy định chính thức.</li></ul></section>`;
   };
 
@@ -2828,30 +2973,51 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
     else { CARDST.i = (CARDST.i + 1) % Math.max(d.length, 1); CARDST.flipped = false; }
     rerender(true); announce(t.dataset.v === 'known' ? 'Đã đánh dấu đã nhớ' : 'Đã đánh dấu cần ôn tập');
   };
-  H['exam-new'] = async () => {
-    if (D().inprogress && currentRoute().name === 'exam' && !currentRoute().arg) {
-      const ok = await confirmBox('Bỏ bài đang làm dở?', 'Bài kiểm tra đang làm sẽ bị bỏ và bạn bắt đầu một bài mới.', 'Bỏ và làm bài mới', 'Giữ bài cũ');
-      if (!ok) return;
-    }
-    startExam(); EXV.filter = 'all'; location.hash = '#/exam/run'; if (currentRoute().arg === 'run') render();
+  H['exam-new'] = () => { EXV.filter = 'all'; if (currentRoute().name === 'exam' && !currentRoute().arg) { rerender(false); } else { location.hash = '#/exam'; } };
+
+  H['exam-discard'] = async () => {
+    const ok = await confirmBox('Bỏ bài đang làm dở?', 'Bài kiểm tra đang làm sẽ bị bỏ (không được chấm, không gửi về hệ thống) và bạn bắt đầu một bài mới.', 'Bỏ bài này', 'Giữ bài cũ');
+    if (!ok) return; D().inprogress = null; Store.save(); rerender(false);
   };
+  H['sync-retry'] = t => { const att = D().attempts.find(a => a.id === t.dataset.id); if (att) { att.sync = { state: 'failed', tries: 0 }; sendAttempt(att); } };
+  document.addEventListener('submit', e => {
+    if (!e.target || e.target.id !== 'prof-form') return;
+    e.preventDefault();
+    const p = cleanProfile({ name: $('#pf-name').value, phone: $('#pf-phone').value, email: $('#pf-email').value });
+    const errs = profileErrors(p, $('#pf-consent').checked);
+    ['name', 'phone', 'email', 'consent'].forEach(k => {
+      const el = $('#err-' + k); if (el) el.textContent = errs[k] || '';
+      const inp = $(k === 'consent' ? '#pf-consent' : '#pf-' + k); if (inp) { if (errs[k]) inp.setAttribute('aria-invalid', 'true'); else inp.removeAttribute('aria-invalid'); }
+    });
+    const first = ['name', 'phone', 'email', 'consent'].find(k => errs[k]);
+    if (first) { const f = $(first === 'consent' ? '#pf-consent' : '#pf-' + first); if (f) f.focus(); announce('Vui lòng điền đủ và đúng thông tin bắt buộc'); return; }
+    D().profile = p; startExam(p); EXV.filter = 'all'; location.hash = '#/exam/run';
+  });
+  window.addEventListener('online', () => { retryPending(false); });
   H['exam-continue'] = () => { location.hash = '#/exam/run'; };
   H['exam-pick'] = t => {
-    const ip = D().inprogress; if (!ip) return; const L = ip.lines[ip.cur];
+    const ip = D().inprogress; if (!ip || submitting) return; const L = ip.lines[ip.cur];
     L.ch = Number(t.dataset.i); Store.save(); rerender(true);
   };
   H['exam-clear'] = () => { const ip = D().inprogress; if (!ip) return; ip.lines[ip.cur].ch = null; Store.save(); rerender(true); };
   H['exam-go'] = t => { const ip = D().inprogress; if (!ip) return; ip.cur = Number(t.dataset.i); Store.save(); rerender(false); window.scrollTo(0, 0); };
   H['exam-prev'] = () => { const ip = D().inprogress; if (!ip || ip.cur <= 0) return; ip.cur--; Store.save(); rerender(false); window.scrollTo(0, 0); };
   H['exam-next'] = () => { const ip = D().inprogress; if (!ip || ip.cur >= ip.lines.length - 1) return; ip.cur++; Store.save(); rerender(false); window.scrollTo(0, 0); };
+  let submitting = false;
   H['exam-submit'] = async () => {
-    const ip = D().inprogress; if (!ip) return;
+    const ip = D().inprogress; if (!ip || submitting) return;
     const un = ip.lines.filter(x => x.ch == null).length;
     if (un > 0) {
-      const ok = await confirmBox('Nộp bài khi chưa hoàn thành?', `Bạn còn ${un} câu chưa trả lời. Các câu này sẽ được tính là chưa trả lời (không phải trả lời sai) và không có điểm. Bạn có muốn nộp bài ngay không?`, 'Nộp bài', 'Quay lại làm tiếp');
+      const ok = await confirmBox('Nộp bài khi chưa hoàn thành?', `Bạn còn ${un} câu chưa trả lời. Các câu này sẽ được tính là chưa trả lời (không phải trả lời sai) và không có điểm. Sau khi nộp, đề bị khóa và không thể sửa. Bạn có muốn nộp bài ngay không?`, 'Nộp bài', 'Quay lại làm tiếp');
       if (!ok) return;
     }
-    const att = submitExam(); EXV.filter = 'all'; location.hash = '#/exam/result/' + att.id;
+    if (D().inprogress !== ip) return;
+    submitting = true;
+    $$('#main button').forEach(b => { b.disabled = true; });   // khóa đề ngay lập tức
+    const att = submitExam(); EXV.filter = 'all';
+    submitting = false;
+    location.hash = '#/exam/result/' + att.id;
+    sendAttempt(att);                                          // gửi thông tin cá nhân + điểm số
   };
   H['exam-filter'] = t => { EXV.filter = t.value; rerender(true); };
   H['rv-tab'] = t => { RVTAB = t.dataset.t; rerender(false); };
@@ -2878,7 +3044,7 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
   };
   H['practice-again'] = () => { if (!PR) return; startPractice(PR.res.filter(x => !x.ok).map(x => x.q), 'Luyện lại các câu còn sai'); };
   H['reset-all'] = async () => {
-    const ok = await confirmBox('Xóa toàn bộ dữ liệu học tập?', 'Tiến độ bài học, thẻ ghi nhớ, tình huống, lịch sử kiểm tra, danh sách câu sai và kết quả luyện tập trên thiết bị này sẽ bị xóa và không thể khôi phục.', 'Xóa dữ liệu', 'Giữ lại');
+    const ok = await confirmBox('Xóa toàn bộ dữ liệu học tập?', 'Tiến độ bài học, thẻ ghi nhớ, tình huống, lịch sử kiểm tra, thông tin họ tên – số điện thoại – email đã nhập, danh sách câu sai và kết quả luyện tập trên thiết bị này sẽ bị xóa và không thể khôi phục. Kết quả đã gửi về hệ thống không bị ảnh hưởng.', 'Xóa dữ liệu', 'Giữ lại');
     if (!ok) return; Store.reset(); PR = null; CARDST = { group: 'all', onlyReview: false, shuffled: false, order: null, i: 0, flipped: false }; render(); announce('Đã xóa dữ liệu học tập');
   };
 
@@ -2930,6 +3096,8 @@ FC('L20',`Lộ trình áp dụng?`,`GĐ1 (tháng 1–2): phổ biến, chỉ nh�
     QUESTIONS.forEach(q => { if (!q.group || q.ans < 0 || q.ans >= q.opts.length || q.opts.length < 2) bad.push(q.id); });
     if (bad.length) { $('#main').innerHTML = '<h1>Dữ liệu câu hỏi thiếu hoặc sai</h1><p>Các câu cần kiểm tra: ' + esc(bad.join(', ')) + '</p>'; return; }
     render();
+    D().attempts.forEach(a => { if (a.sync && a.sync.state === 'sending') a.sync.state = 'failed'; });
+    setTimeout(() => { retryPending(false); }, 800);
   }
   boot();
 })();
